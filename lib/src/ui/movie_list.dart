@@ -4,11 +4,26 @@ import 'package:practice_bloc_pattern/src/blocs/movies_bloc.dart';
 
 import '../models/item_model.dart';
 
-class MovieList extends StatelessWidget {
+class MovieList extends StatefulWidget {
+  @override
+  State<MovieList> createState() => _MovieListState();
+}
+
+class _MovieListState extends State<MovieList> {
+  @override
+  void initState() {
+    super.initState();
+    bloc.fetchPopularMovies();
+  }
+
+  @override
+  void dispose() {
+    bloc.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    bloc.fetchPopularMovies();
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Popular Movies'),
@@ -38,8 +53,11 @@ class MovieList extends StatelessWidget {
       gridDelegate:
           SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
       itemBuilder: (context, index) {
-        return Image.network(
-            'https://image.tmdb.org/t/p/w185${snapshot.data?.results[index].poster_path}');
+        return GridTile(
+          child: Image.network(
+            'https://image.tmdb.org/t/p/w185${snapshot.data?.results[index].poster_path}',
+          ),
+        );
       },
     );
   }
