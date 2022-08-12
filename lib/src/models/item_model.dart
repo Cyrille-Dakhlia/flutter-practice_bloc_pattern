@@ -40,7 +40,8 @@ class _Result {
   _Result(result) {
     _adult = result['adult'];
     _backdrop_path = result['backdrop_path'];
-    _genre_ids = result['genre_ids'];
+    _genre_ids =
+        (result['genre_ids'] as List<dynamic>).map((e) => e as int).toList();
     _id = result['id'];
     _original_language = result['original_language'];
     _original_title = result['original_title'];
@@ -50,7 +51,7 @@ class _Result {
     _release_date = result['release_date'];
     _title = result['title'];
     _video = result['video'];
-    _vote_average = result['vote_average'];
+    _vote_average = result['vote_average'].toDouble();
     _vote_count = result['vote_count'];
   }
 

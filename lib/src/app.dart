@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practice_bloc_pattern/src/ui/movie_list.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -10,7 +11,7 @@ class App extends StatelessWidget {
       theme: ThemeData.dark(),
       home: Scaffold(
         body: Center(
-          child: Text('Working Area...'),
+          child: MovieList(),
         ),
       ),
     );
